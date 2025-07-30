@@ -11,16 +11,16 @@ on:
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
-
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+      - name: Setup NuGet
+        uses: nuget/setup-nuget@v2
         with:
-          dotnet-version: 8.0.x
+          nuget-version: 'latest'
       - name: Restore dependencies
-        run: dotnet restore
+        run: nuget restore KWHotelDecryptor.sln
       - name: Build
-        run: dotnet build --no-restore
+        run: msbuild.exe KWHotelDecryptor.sln /p:Platform="Any CPU" /p:Configuration="Release" /p:TargetFrameworkVersion=v4.7.2
