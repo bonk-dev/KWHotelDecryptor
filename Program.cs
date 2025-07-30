@@ -56,6 +56,8 @@ namespace KWHotelDecryptor
         
         public static void Main(string[] args)
         {
+            Console.WriteLine("KWHotelDecryptor v1.0.0 - Dawid Pągowski\n");
+            
             string[] paths;
             if (args.Length < 1)
             {
